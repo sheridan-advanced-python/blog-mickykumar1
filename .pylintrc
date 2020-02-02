@@ -1,5 +1,8 @@
 [MASTER]
 load-plugins=pylint_django
+# Procfile
+
+web: gunicorn mysite.wsgi
 
 [FORMAT]
 max-line-length=79
