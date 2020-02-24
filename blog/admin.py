@@ -10,7 +10,7 @@ class PostAdmin(admin.ModelAdmin):
     #The list display should be customized
     search_fields = ('title', 'author__username', 'author__first_name', 'author__last_name')
     #The comment list should be searchable
-    list_filter = (status)
+    #list_filter = (status)
 
     def author(self, obj):#for list_display author
         return obj.author

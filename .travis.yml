@@ -1,3 +1,5 @@
+# .travis.yml
+
 language: python
 python: "3.7"
 sudo: required
@@ -7,3 +9,5 @@ install:
 script:
   - pytest -v
   - find . -name '*.py' | xargs pylint
+services:
+  - postgresql
