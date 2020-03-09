@@ -64,4 +64,4 @@ class PostQuerySet(models.QuerySet):
     # ...
     def get_authors(self):
         User = get_user_model()
-        return User.objects.all()
+        return User.objects.filter(blog_posts__in=self).distinct()

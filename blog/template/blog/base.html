@@ -24,7 +24,12 @@
 
   <main id="main-content">
     {% extends "blog/base.html" %}
-
+          #main-content {
+        margin-top: 1rem;
+        display: grid;
+        /* The grid has 2 columns. 1 with auto width, the other is 200px wide */
+        grid-template-columns: auto 200px;
+      }
      {% block main %}
 
      <section class="latest-article-preview">
@@ -39,6 +44,20 @@
 
      </section>
      {% endblock %}
+     <aside id="sidebar">
+      <section id="author-list">
+        <h3>Authors</h3>
+        {{ authors }}
+      </section>
+    </aside>
+    <section id="author-list">
+  <h3>Authors</h3>
+  <ul>
+    {% for author in authors %}
+      <li>author.get_full_name</li>
+    {% endfor %}
+  </ul>
+</section>
   </main>
 
   <!-- The footer -->
