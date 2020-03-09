@@ -59,3 +59,9 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.name
+
+class PostQuerySet(models.QuerySet):
+    # ...
+    def get_authors(self):
+        User = get_user_model()
+        return User.objects.all()

@@ -18,7 +18,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from . import views   # Import the views module
+#from . import views   # Import the views module
+
+from blog import views  # Import the blog views
 
 urlpatterns = [
     path('', views.index),  # Add our index view to the URL patterns
