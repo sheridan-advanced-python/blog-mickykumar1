@@ -2,7 +2,10 @@
 {% extends "blog/base.html" %}
 
 {% block main %}
-<p>Welcome to the home page of my blog!</p>
-
-{{ latest_posts }}
+<section>
+  <h1>Latest posts</h1>
+  {% for post in latest_posts %}
+    {% include "blog/post_preview.html" %}
+  {% endfor %}
+</section>
 {% endblock %}
