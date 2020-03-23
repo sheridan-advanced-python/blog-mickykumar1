@@ -47,3 +47,19 @@ def terms_and_conditions(request):
     model = models.Post
     context_object_name = 'posts'
     queryset = models.Post.objects.published().order_by('-published')
+
+class PostDetailView(DetailView):
+    model = models.Post
+
+    def get_queryset(self):
+        # Get the base queryset
+        queryset = super().get_queryset().published()
+                # If this is a `pk` lookup, use default queryset
+        if 'pk' in self.kwargs:
+            return queryset
+
+        return queryset.filter(
+            published__year=self.kwargs['year'],
+            published__month=self.kwargs['month'],
+            published__day=self.kwargs['day'],
+        )
