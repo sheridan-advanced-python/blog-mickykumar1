@@ -25,4 +25,6 @@ from blog import views  # Import the blog views
 urlpatterns = [
     path('', views.index),  # Add our index view to the URL patterns
     path('admin/', admin.site.urls),
+    path('terms/', views.terms_and_conditions, name='terms-and-conditions'),
+
 ]
