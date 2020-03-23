@@ -26,5 +26,5 @@ urlpatterns = [
     path('', views.index),  # Add our index view to the URL patterns
     path('admin/', admin.site.urls),
     path('terms/', views.terms_and_conditions, name='terms-and-conditions'),
-
+    path('posts/', views.PostListView.as_view(), name='post-list'),
 ]
