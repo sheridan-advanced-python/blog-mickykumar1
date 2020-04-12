@@ -73,8 +73,8 @@ class FormViewExample(FormView):
     success_url = reverse_lazy('home')
 
 
-class contestFormView(CreateView):
-    model = models.contest
+class ContactFormView(CreateView):
+    model = models.Contact
     success_url = reverse_lazy('home')
     fields = [
         'first_name',
@@ -88,5 +88,33 @@ class contestFormView(CreateView):
             self.request,
             messages.SUCCESS,
             'Thank you! Your message has been sent.'
+        )
+        return super().form_valid(form)
+
+class contestFormView(CreateView):
+    model = models.contest
+    success_url = reverse_lazy('home')
+    fields = [
+        'first_name',
+        'last_name',
+        'email',
+        'image',
+    ]
+
+    def upload_pic(self, request):
+        if request.method == 'POST':
+            form = photo_contest_form(request.POST, request.FILES)
+            if form.is_valid():
+                m = photo_contest.objects.get(pk=course_id)
+                m.model_pic = form.cleaned_data['image']
+                m.save()
+                return HttpResponse('image upload success')
+        return HttpResponseForbidden('allowed only via POST')
+
+    def form_valid(self, form):
+        messages.add_message(
+            self.request,
+            messages.SUCCESS,
+            'Thank you! Your image for the contest has been submitted.'
         )
         return super().form_valid(form)
