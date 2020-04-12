@@ -1,5 +1,6 @@
 from django.shortcuts import render
-
+from django.views.generic import DetailView, CreateView, FormView, ListView
+from django.urls import reverse_lazy
 # Create your views here.
 from django.views.generic.base import TemplateView
 from . import models
@@ -63,3 +64,29 @@ class PostDetailView(DetailView):
             published__month=self.kwargs['month'],
             published__day=self.kwargs['day'],
         )
+
+
+
+class FormViewExample(FormView):
+    template_name = 'blog/form_example.html'
+    form_class = forms.ExampleSignupForm
+    success_url = reverse_lazy('home')
+
+
+class contestFormView(CreateView):
+    model = models.contest
+    success_url = reverse_lazy('home')
+    fields = [
+        'first_name',
+        'last_name',
+        'email',
+        'message',
+    ]
+
+    def form_valid(self, form):
+        messages.add_message(
+            self.request,
+            messages.SUCCESS,
+            'Thank you! Your message has been sent.'
+        )
+        return super().form_valid(form)

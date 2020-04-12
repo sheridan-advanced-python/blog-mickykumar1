@@ -57,7 +57,7 @@ class Post(models.Model):
         else:
             kwargs = {'pk': self.pk}
 
-        return reverse('post-detail', kwargs=kwargs)  
+        return reverse('post-detail', kwargs=kwargs)
 
 class Comment(models.Model):
     """
@@ -79,3 +79,15 @@ class PostQuerySet(models.QuerySet):
     def get_authors(self):
         User = get_user_model()
         return User.objects.filter(blog_posts__in=self).distinct()
+
+class contest(models.Model):
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+    email = models.EmailField()
+    submitted = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-submitted']
+
+    def __str__(self):
+        return f'{self.submitted.date()}: {self.email}'

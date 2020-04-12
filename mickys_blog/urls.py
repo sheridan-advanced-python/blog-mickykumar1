@@ -37,4 +37,10 @@ urlpatterns = [
         views.PostDetailView.as_view(),
         name='post-detail'
     ),
+    path(
+        'formview-example/',
+        views.FormViewExample.as_view(),
+        name='formview-example'
+    ),
+    path('contest/', views.contestFormView.as_view(), name='contest'),
 ]

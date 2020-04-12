@@ -18,6 +18,7 @@
       <li><a href="#">Home</a></li>
       <li><a href="#">About</a></li>
       <li><a href="#">Posts</a></li>
+      <li><a href="{% url "contest" %}">contest</a></li>
       <li><a href="#">Contact</a></li>
     </ul>
   </nav>
@@ -59,6 +60,24 @@
   </ul>
 </section>
   </main>
+  <body>
+  {% if messages %}
+  <div class="django-messages">
+    {% for message in messages %}
+    <div{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</div>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  {# Make a wrapper around the content #}
+  <div class="wrapper">
+    <header ... >
+      {# ... # }
+    {# ... bottom of page ... #}
+    </footer>
+  {# close wrapper #}
+  </div>
+</body>
 
   <!-- The footer -->
   <footer id="site-footer">

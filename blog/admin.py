@@ -25,3 +25,21 @@ class PostAdmin(admin.ModelAdmin):
 admin.site.register(models.Post, PostAdmin)
 # Register the `Comment` model
 admin.site.register(models.Comment, PostAdmin)
+
+
+@admin.register(models.contest)
+class ContactAdmin(admin.ModelAdmin):
+    list_display = (
+        'email',
+        'last_name',
+        'first_name',
+        'submitted'
+    )
+    # Make these fields read-only in the admin
+    readonly_fields = (
+        'first_name',
+        'last_name',
+        'email',
+        'message',
+        'submitted'
+    )
