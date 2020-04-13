@@ -1,7 +1,8 @@
 
 from django.conf import settings  # Imports Django's loaded settings
 from django.db import models
-
+from ckeditor_uploader.fields import RichTextUploadingField
+39
 # Create your models here.
 class Post(models.Model):
     """
@@ -13,6 +14,7 @@ class Post(models.Model):
         (DRAFT, 'Draft'),
         (PUBLISHED, 'Published')
     ]
+    content = RichTextUploadingField()
     title = models.CharField(max_length=255)
     content = models.TextField()
     created = models.DateTimeField(auto_now_add=True)  # Sets on create
@@ -58,6 +60,11 @@ class Post(models.Model):
             kwargs = {'pk': self.pk}
 
         return reverse('post-detail', kwargs=kwargs)
+     banner = models.ImageField(
+            blank=True,
+            null=True,
+            help_text='A banner image for the post'
+        )
 
 class Comment(models.Model):
     """

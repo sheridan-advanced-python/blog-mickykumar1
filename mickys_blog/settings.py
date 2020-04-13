@@ -12,7 +12,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'rs$6v!d0mp67ptj_0+62qsi5q0&4_g#tp#4!r2juncmhfh5qc+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# Read the DEBUG environment variable. Default to "1" for True.
+DEBUG = int(os.environ.get('DEBUG', '1'))
 
 ALLOWED_HOSTS = ['*']
 
@@ -27,6 +28,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'ckeditor',
+    'ckeditor_uploader',
 ]
 
 MIDDLEWARE = [
@@ -88,6 +91,7 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
+
 ]
 
 
@@ -110,3 +114,15 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+INSTALLED_APPS = [
+    #...
+    'ckeditor',
+    'ckeditor_uploader',
+]
+
+
+MOMMY_CUSTOM_CLASS = 'tests.mommy.CustomMommy'

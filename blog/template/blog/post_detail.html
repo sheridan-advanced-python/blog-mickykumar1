@@ -1,2 +1,6 @@
 {# blog/templates/blog/post_detail.html #}
 {% extends "blog/base.html" %}
+{% if post.banner %}
+  <img src="{{ post.banner.url }}" width="100%" alt="Banner image">
+{% endif %}
+<section class="content">{{ post.content|safe }}</section>
