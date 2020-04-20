@@ -115,3 +115,25 @@ class contest(models.Model):
         ordering = ['-photo_submitted']
     def __str__(self):
         return f'{self.photo_submitted.date()}: {self.email}'
+
+
+class Comment(models.Model):
+    post = models.ForeignKey(
+        Post,
+        on_delete=models.CASCADE,
+        related_name='comments'
+    )
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+    text = models.TextField()
+    approved = models.BooleanField(default=True)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+
+    objects = CommentQuerySet.as_manager()
+
+    def __str__(self):
+        return f'{self.name} re: {self.post}'
+
+    class Meta:
+        ordering = ['-created']

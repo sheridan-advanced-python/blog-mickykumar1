@@ -118,3 +118,17 @@ class contestFormView(CreateView):
             'Thank you! Your image for the contest has been submitted.'
         )
         return super().form_valid(form)
+
+class PostDetailView(DetailView):
+    # ...
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Get the post object
+        post = self.get_object()
+
+        # Set the post field on the form
+        comment_form = forms.CommentForm(initial={'post': post})
+        context['comment_form'] = comment_form
+
+        return context
