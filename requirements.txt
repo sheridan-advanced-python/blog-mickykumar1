@@ -1,7 +1,7 @@
 # requirements.txt
 
 Django==2.2.3
-Pillow==6.1.0
+Pillow==8.3.2
 boto3==1.9.205
 dj-database-url==0.5.0
 django-storages==1.7.1
